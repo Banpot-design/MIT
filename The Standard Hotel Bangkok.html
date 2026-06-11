@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercury Integrated Technology - Premium Building Systems & ICT Solutions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Kanit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Kanit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#152A56', // สีน้ำเงินหลักของโลโก้ Mercury (Logo Blue)
+                            light: '#2C4F94',   
+                            dark: '#0D1A36',    
+                        },
+                        yellow: { 
+                            DEFAULT: '#FFC72C', // สีเหลืองทองเสื้อ Golden State Warriors (GSW Gold)
+                            light: '#FFD66B',   
+                            dark: '#D69E1F',    
+                        },
+                        neutralbg: '#FAF9F6', // พื้นหลังสีขาวครีม Alabaster สว่างสบายตา คลีนสะอาด
+                    },
+                    fontFamily: {
+                        sans: ['Kanit', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF9F6;
+            font-family: 'Kanit', 'Inter', sans-serif;
+        }
+        /* ระบบควบคุมการสลับพิกัด 2 ภาษา */
+        .lang-en [lang="th"] { display: none !important; }
+        .lang-th [lang="en"] { display: none !important; }
+        
+        /* สไตล์หน้าต่างกระจกหรูหราฝ้าโปร่งแสง (Luxury Glassmorphism) */
+        .luxury-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="lang-th text-navy min-h-screen flex flex-col selection:bg-yellow/30">
+
+    <!-- เมนูนำทางแถบบน (Navigation Header พร้อมสัญลักษณ์แบรนด์แบบ SVG วาดขึ้นรูปเพื่อความเร็วสูงสุด) -->
+    <header class="fixed top-0 w-full z-50 bg-navy/95 backdrop-blur-md border-b border-white/5 shadow-lg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- ตราสัญลักษณ์โลโก้จริงและชื่อหน่วยงานประจำแบรนด์ -->
+            <a href="index.html#homepage" class="flex items-center space-x-3">
+                <img src="Logo Mercury.png"
+                     alt="Mercury"
+                     class="h-32 w-auto">
+            </a>
+
+            <!-- รายชื่อรายการนำทางหน้ากระดานคอมพิวเตอร์ -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <nav class="hidden lg:flex items-center gap-14">
+
+    <a href="index.html#about"
+       class="text-white/80 hover:text-white transition">
+       เกี่ยวกับเรา
+    </a>
+
+    <a href="index.html#products"
+       class="text-white/80 hover:text-white transition">
+       สินค้าและบริการ
+    </a>
+
+    <a href="index.html#references"
+       class="text-white/80 hover:text-white transition">
+       ผลงานอ้างอิง
+    </a>
+
+    <a href="index.html#contact"
+       class="text-white/80 hover:text-white transition">
+       ติดต่อเรา
+    </a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- สวิตช์ปุ่มเปลี่ยนภาษาพรีเมียม TH/EN -->
+                <div class="flex items-center bg-white/5 border border-white/10 rounded-full p-1">
+                    <button onclick="switchLanguage('th')" id="lang-btn-th" class="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 bg-yellow text-navy shadow-sm">TH</button>
+                    <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 text-gray-400 hover:text-white">EN</button>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none p-2 rounded-lg hover:bg-white/5">
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- รายการสไลด์สำหรับมือถือโทรศัพท์ -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-dark/95 border-b border-white/5 px-6 py-6 space-y-4">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-yellow text-base font-light py-2">
+                <span lang="th">เกี่ยวกับเรา</span>
+                <span lang="en">About us</span>
+            </a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-yellow text-base font-light py-2">
+                <span lang="th">สินค้าและบริการ</span>
+                <span lang="en">Products & Services</span>
+            </a>
+            <a href="#references" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-yellow text-base font-light py-2">
+                <span lang="th">ผลงานอ้างอิง</span>
+                <span lang="en">Site References</span>
+            </a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-yellow text-base font-light py-2">
+                <span lang="th">ติดต่อเรา</span>
+                <span lang="en">Contact us</span>
+            </a>
+        </div>
+    </header>
+    <section class="max-w-7xl mx-auto px-6 py-12">
+
+    
+        
+<main class="pt-32">
+
+    <section class="max-w-7xl mx-auto px-6">
+
+        <h1 class="text-5xl font-bold text-navy">
+            The Standard Hotel Bangkok
+        </h1>
+
+        <p class="mt-4 text-gray-600">
+            การวางระบบเซิร์ฟเวอร์หลัก วิศวกรรมสายเคเบิลระบบไอทีและสื่อสาร (Structured IT Cabling) และระบบเชื่อมโยงสื่อสารความเร็วสูงรองรับการทำงานของอาคารทั้งหมด
+        </p>
+
+    </section>
+
+</main>
+
+</body>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+    <img src="The Standard Hotel Bangkok1.png"
+         class="w-full h-64 object-cover rounded-xl">
+
+    <img src="The Standard Hotel Bangkok2.png"
+         class="w-full h-64 object-cover rounded-xl">
+
+    <img src="The Standard Hotel Bangkok3.png"
+         class="w-full h-64 object-cover rounded-xl">
+
+    <img src="The Standard Hotel Bangkok4png.jpg"
+         class="w-full h-64 object-cover rounded-xl">
+         
+</div>
+
+</section>
+
+</body>
+</html>
